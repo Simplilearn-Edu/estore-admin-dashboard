@@ -1,0 +1,10 @@
+[
+  {
+    "categoryId": 1,
+    "categoryName": "Electronics",
+    "categoryDescription": "The field of electronics is a branch of physics and electrical engineering that deals with the emission, behaviour and effects of electrons using electronic devices.",
+    "categoryImageUrl": "",
+    "active": true,
+    "addedOn": "10 August 2020"
+  }
+]

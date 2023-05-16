@@ -1,0 +1,59 @@
+.add-btn {
+  border: 0;
+  background-color: #5e72e4;
+  color: #fff;
+  padding: 8px;
+  border-radius: 20px;
+  width: 150px;
+}
+
+.add-btn:hover {
+  background-color: #3b54e0;
+}
+
+.text-limit {
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.text-limit:hover{
+  -webkit-line-clamp: 0;
+  z-index: 2;
+}
+
+.list-hover:hover {
+  cursor: pointer;
+  background: #eee;
+}
+
+.verticalScroll {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.thumbnail-image-tag {
+  color: #000;
+  background-color: orange;
+  /* background-color: #172b4d; */
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px !important;
+  border-bottom-right-radius: 25px;
+  border-top-right-radius: 25px;
+  margin-top: 2px;
+  z-index: 4;
+}
+
+.img-style {
+  border: 2px solid #a0a0a0; 
+  border-radius: 8px; 
+  cursor: pointer;
+}
+
+.img-style:hover {
+  content: "View Full Image";
+}

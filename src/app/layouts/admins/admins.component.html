@@ -1,0 +1,30 @@
+<nav class="navbar navbar-top navbar-expand-md navbar-dark bg-dark" id="navbar-main">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="h5 mb-0 text-white text-uppercase" style="text-decoration: none;">
+      E-COMMERCE Store
+    </a>
+
+    <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+      aria-controls="sidenav-collapse-main">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse ml-2" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+      <!-- Navigation -->
+      <ul class="navbar-nav">
+        <li *ngFor="let menuItem of listTitles" class="{{menuItem.class}} nav-item">
+          <a routerLinkActive="active" [routerLink]="[menuItem.path]" class="nav-link" style="font-size: 18px;">
+            <i class="ni {{menuItem.icon}}"></i>
+            {{menuItem.title}}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a type="button" class="nav-link" (click)="authService.logout()">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

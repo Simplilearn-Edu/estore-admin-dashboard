@@ -1,0 +1,35 @@
+[
+  {
+    "orderId": 3456789345,
+    "orderDate": "03 December 2021",
+    "orderStatus": "Pending",
+    "products": [
+      {
+        "productId": 1,
+        "productCode": "PRD-ELE-1054",
+        "productImg": "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX466_.jpg",
+        "productTitle": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+        "productDescription": "Easy upgrade for faster boot up, shutdown, application load and response",
+        "productCategory": "Electronics",
+        "price": 300,
+        "quantity": 4,
+        "totalPrice": 1200
+      }
+    ],
+    "totalItems": 1,
+    "itemsSubTotal": 1200,
+    "shipmentCharges": 100,
+    "totalAmount": 1300,
+    "paymentStatus": 0,
+    "paymentStatusTile": "Pending",
+    "paymentMethod": 0,
+    "paymentMethodTitle": "Cash on Delivery (COD)",
+
+    "userId": 1,
+    "name": "John Watson",
+    "email" : "john@example.com",
+    "contact": "9874563211",
+    "address": "ABC Ludhiana 1414001"
+  }
+]
+

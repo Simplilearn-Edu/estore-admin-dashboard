@@ -1,0 +1,29 @@
+[
+  {
+    "productId": 1,
+    "productTitle": "SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s",
+    "productDescription": "Easy upgrade for faster boot up, shutdown, application load and response",
+    "productCategory": {
+      "categoryId": 1,
+      "categoryName": "Electronics",
+      "categoryDescription": "",
+      "categoryImageUrl": "",
+      "active": true,
+      "addedOn": "10 August 2020"
+    },
+    "productCode": "PRD-ELE-1054",
+    "images": [
+      "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX466_.jpg",
+      "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX679_.jpg",
+      "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX355_.jpg",
+      "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX522_.jpg",
+      "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX450_.jpg",
+      "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX425_.jpg",
+      "https://m.media-amazon.com/images/I/71J4Q8zM72L._SX569_.jpg"
+    ],
+    "thumbnailImage": 0,
+    "price": 300,
+    "addedOn": "30 November 2021",
+    "rating": 4
+  }
+]

@@ -1,0 +1,103 @@
+<div class="container-fluid py-3">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-0">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <h4>Categories</h4>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="d-flex justify-content-end align-items-center">
+                <button class="btn btn-dark me-1" (click)="openProductCategoryDialog(prodCategoryModal)">Add Category</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-flush m-0">
+            <thead class="thead-light">
+              <tr>
+                <th>Sr. No</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let prod of categories; index as idx">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ prod["categoryName"] }}</td>
+                <td class="text-wrap w-50">{{ prod["categoryDescription"] }}</td>
+                <td>
+                  <h5><span class="badge rounded-pill {{ prod['active'] ? 'bg-success' : 'bg-warning' }}">{{ prod['active'] ? "Active" : "In Active" }}</span></h5>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-sm btn-dark me-1 mb-1" [disabled]="prod['categoryImageUrl'] === ''">View Image</button>
+                  <button type="button" class="btn btn-sm btn-dark me-1 mb-1" (click)="openProductCategoryDialog(prodCategoryModal, prod)">Update</button>
+                  <button type="button" class="btn btn-sm btn-danger me-1 mb-1" (click)="deleteCategory(prod['categoryId'], idx)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #prodCategoryModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">{{ prodCategoryBool ? 'Product' : 'Dealer' }} Category Details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <!-- <span aria-hidden="true">&times;</span> -->
+    </button>
+  </div>
+  <form [formGroup]="productCategoryForm" (ngSubmit)="saveCategories()">
+    <div class="modal-body">
+      <div class="form-group col mt-2">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" formControlName="categoryName">
+      </div>
+      <div class="form-group col mt-2">
+        <label>Description</label>
+        <textarea type="text" class="form-control" name="title" rows="5"
+          formControlName="categoryDescription"></textarea>
+      </div>
+      <div class="form-group col mt-2">
+        <label for="imageFile">Select Image File</label>
+        <div class="custom-file">
+          <input type="file" class="form-control" id="imageFile" (change)="checkFileType($event)">
+          <!-- <label class="custom-file-label p-1 d-flex align-items-center" for="imageFile">
+            <span *ngIf="tempFile == null">Choose file</span>
+            <span *ngIf="tempFile != null">{{ tempFile.name }}</span>
+          </label> -->
+        </div>
+      </div>
+      <div class="form-group col mt-2 d-flex flex-column">
+        <label for="slideStatus">Status</label>
+        <div class="btn-group btn-group-toggle" ngbRadioGroup formControlName="active" name="active">
+          <label ngbButtonLabel class="btn-primary btn-sm">
+            <input ngbButton type="radio" class="btn-check" [value]="1">Active
+          </label>
+          <label ngbButtonLabel class="btn-primary btn-sm">
+            <input ngbButton type="radio" class="btn-check" [value]="0">In-Active
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light btn-sm" (click)="modal.dismiss('')">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-dark btn-sm" [disabled]="loader">
+        Save
+        <span *ngIf="loader">&nbsp;</span>
+        <div *ngIf="loader" class="spinner-border spinner-border-sm text-white" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </button>
+    </div>
+  </form>
+</ng-template>

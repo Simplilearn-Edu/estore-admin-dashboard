@@ -1,0 +1,18 @@
+[
+  {
+    "userId": 1,
+    "username": "john",
+    "fullName": "John Watson",
+    "address": {
+      "street": "ABC",
+      "city": "Ludhiana",
+      "state": "Punjab",
+      "country": "India",
+      "pincode": 141001
+    },
+    "email": "john@example.com",
+    "img": "",
+    "contact": "9874563211",
+    "addedOn": ""
+  }
+]

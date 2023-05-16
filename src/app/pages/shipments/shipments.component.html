@@ -1,0 +1,95 @@
+<div class="container-fluid py-3">
+  <div class="row">
+    <div class="col">
+      <div class="card shadow-sm">
+        <div class="card-header bg-white border-0">
+          <div class="row">
+            <div class="col-12">
+              <div class="d-flex flex-column align-items-start">
+                <h4>Shipment</h4>
+                <div class="d-flex flex-wrap">
+                  <button type="button" class="btn btn-sm me-1" *ngFor="let status of shipmentStatus; index as idx" [ngClass]="{
+                    'btn-dark': shipmentStatusIdx === status.value,
+                    'btn-outline-dark': shipmentStatusIdx !== status.value
+                  }" (click)="db.getShipments(status.value); shipmentStatusIdx = idx">
+                    {{ status.name }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body" *ngIf="shipments.length === 0">
+          <div class="d-flex flex-column justify-content-center align-items-center" style="height: 100%;">
+            <img src="./../../../assets/img/empty-cart.svg" alt="" class="img-fluid" width="300px" height="300px">
+            <h5 class="m-0 mt-2 text-muted">No Orders in Shipment</h5>
+          </div>
+        </div>
+        <div class="table-responsive" *ngIf="shipments.length !== 0">
+          <table class="table table-flush m-0">
+            <thead class="thead-light">
+              <tr>
+                <th>Sr. No</th>
+                <th>Shipment ID</th>
+                <th>Order ID</th>
+                <th>Shipment Company</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let shipment of shipments; index as idx">
+                <td>{{ idx + 1 }}</td>
+                <td>{{ shipment?.shipmentId }}</td>
+                <td>{{ shipment.orderId }}</td>
+                <td>{{ shipment.shipmentCompany === "null" ? "Not Provided" : shipment.shipmentCompany }}</td>
+                <td>
+                  <button type="button" class="btn btn-dark btn-sm me-1" [disabled]="shipment.shipmentStatus" (click)="openUpdateModal(shipmentModal, shipment)">Update Shipment</button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="deleteShipment(shipment.shipmentId, idx)">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #shipmentModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Shipment Details</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <!-- <span aria-hidden="true">&times;</span> -->
+    </button>
+  </div>
+  <form [formGroup]="shipmentForm" (ngSubmit)="updateShipmentDetails()" ngNativeValidate>
+    <div class="modal-body">
+      <div class="form-group col">
+        <label>Shipment Company</label>
+        <input type="text" class="form-control" name="shipmentCompany" id="shipmentCompany" formControlName="shipmentCompany">
+      </div>
+      <div class="form-group col mt-2">
+        <label>Select Order Status</label>
+        <select name="approved" class="form-select" (change)="onSelectChange($event)">
+          <option *ngFor="let status of shipmentStatus; index as idx" [value]="status.value">{{ status.name }}</option>
+        </select>
+      </div>
+      <div class="form-group col mt-2">
+        <label>Expected Delivery Date</label>
+        <input type="date" class="form-control" name="expectedDeliveryDate" id="expectedDeliveryDate" formControlName="expectedDeliveryDate">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-dark btn-sm" (click)="modal.dismiss('')">
+        Cancel
+      </button>
+      <button type="submit" class="btn btn-dark btn-sm" [disabled]="loader">
+        Save
+        <span *ngIf="loader">&nbsp;</span>
+        <div *ngIf="loader" class="spinner-border spinner-border-sm text-white" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </button>
+    </div>
+  </form>
+</ng-template>
